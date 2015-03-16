@@ -1,6 +1,7 @@
 var Game = function() {
   var _display = new ROT.Display({ width: 80, height: 24 });
   var _currentScreen = null;
+
   var bindEventToScreen = function(event) {
     window.addEventListener(event, function(e) {
       if(_currentScreen !== null) {
@@ -8,9 +9,11 @@ var Game = function() {
       }
     });
   };
+
   bindEventToScreen('keydown');
   bindEventToScreen('keyup');
   bindEventToScreen('keypress');
+
   return {
     getDisplay: function() { return _display; },
     switchScreen: function(screen) {

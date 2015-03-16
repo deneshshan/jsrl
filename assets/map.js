@@ -16,4 +16,4 @@ Game.Map = function(tiles) {
         return _tiles[x][y] || Game.Tile.nullTile;
     }
   };
-}
+};

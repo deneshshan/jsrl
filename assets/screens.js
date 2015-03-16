@@ -18,6 +18,7 @@ Game.Screen = (function() {
     playScreen: (function() {
       var map = [];
       var _game_map = [];
+
       return { 
         enter: function() { 
           console.log("Entered play screen"); 
@@ -64,6 +65,7 @@ Game.Screen = (function() {
           }  
         }
       };
+
     })(),
     winScreen: {
       enter: function() {    console.log("Entered win screen."); },
