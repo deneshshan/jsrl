@@ -25,7 +25,7 @@ Game.Screen = (function() {
           for(var x = 0; x < 80; x++) {
             map.push([]);
             for(var y = 0; y < 24; y++) {
-              map[x].push(Game.Tile.nullTile);
+              map[x].push(Game.TileMap.map());
             }
           }
           var generator = new ROT.Map.Cellular(80, 24);
@@ -36,9 +36,9 @@ Game.Screen = (function() {
           }
           generator.create(function(x, y, v) {
             if(v === 1) {
-              map[x][y] = Game.Tile.floorTile;
+              map[x][y] = Game.TileMap.map('.');
             } else {
-              map[x][y] = Game.Tile.wallTile;
+              map[x][y] = Game.TileMap.map('#');
             }
           });
           _game_map = new Game.Map(map);
@@ -54,49 +54,9 @@ Game.Screen = (function() {
           console.log("hi");
         },
         handleInput: function(inputType, inputData) {
-          if (inputType === 'keydown') {
-            // If enter is pressed, go to the win screen
-            // If escape is pressed, go to lose screen
-            if (inputData.keyCode === ROT.VK_RETURN) {
-              Game.switchScreen(Game.Screen.winScreen);
-            } else if (inputData.keyCode === ROT.VK_ESCAPE) {
-              Game.switchScreen(Game.Screen.loseScreen);
-            }
-          }  
         }
       };
 
-    })(),
-    winScreen: {
-      enter: function() {    console.log("Entered win screen."); },
-      exit: function() { console.log("Exited win screen."); },
-      render: function(display) {
-          // Render our prompt to the screen
-          for (var i = 0; i < 22; i++) {
-              // Generate random background colors
-              var r = Math.round(Math.random() * 255);
-              var g = Math.round(Math.random() * 255);
-              var b = Math.round(Math.random() * 255);
-              var background = ROT.Color.toRGB([r, g, b]);
-              display.drawText(2, i + 1, "%b{" + background + "}You win!");
-          }
-      },
-      handleInput: function(inputType, inputData) {
-          // Nothing to do here      
-      }
-    },
-    loseScreen: {
-      enter: function() {    console.log("Entered lose screen."); },
-      exit: function() { console.log("Exited lose screen."); },
-      render: function(display) {
-          // Render our prompt to the screen
-          for (var i = 0; i < 22; i++) {
-              display.drawText(2, i + 1, "%b{red}You lose! :(");
-          }
-      },
-      handleInput: function(inputType, inputData) {
-          // Nothing to do here      
-      }
-    }
+    })()
   };
 })();

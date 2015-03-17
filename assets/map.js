@@ -11,9 +11,9 @@ Game.Map = function(tiles) {
     },
     getTile: function(x, y) {
       if(x < 0 || x >= _width || y < 0 || y>= _height)
-        return Game.Tile.nullTile;
+        return Game.TileMap.map();
       else
-        return _tiles[x][y] || Game.Tile.nullTile;
+        return _tiles[x][y] || Game.TileMap.map();
     }
   };
 };

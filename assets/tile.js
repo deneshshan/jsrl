@@ -7,6 +7,18 @@ Game.Tile = function(glyph) {
   };
 };
 
-Game.Tile.nullTile = new Game.Tile(new Game.Glyph());
-Game.Tile.floorTile = new Game.Tile(new Game.Glyph('.'));
-Game.Tile.wallTile = new Game.Tile(new Game.Glyph('#', 'goldenrod'));
+Game.TileMap = (function() {
+  var _map = { };
+  var _null = new Game.Tile(new Game.Glyph());
+  _map['.'] = new Game.Tile(new Game.Glyph('.'));
+  _map['#'] = new Game.Tile(new Game.Glyph('#', 'goldenrod'));
+  return {
+    map: function(code) {
+      if(code) {
+        return _map[code];
+      } else {
+        return _null;
+      }
+    }
+  };
+})();
